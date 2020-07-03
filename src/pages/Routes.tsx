@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import IndexPage from "./IndexPage";
 import LoadBookPage from "./LoadBookPage";
-import InfoPage from "./Info";
+import InfoPage from "./InfoPage";
 
 function Routes() {
   return (

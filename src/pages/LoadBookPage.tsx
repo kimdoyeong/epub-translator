@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import FileSlice from "../store/FileSlice";
 import { useHistory } from "react-router-dom";
-import InfoPage from "./Info";
+import InfoPage from "./InfoPage";
 
 function LoadBookPage() {
   const { file, data } = useSelector((state: RootState) => state.file);
