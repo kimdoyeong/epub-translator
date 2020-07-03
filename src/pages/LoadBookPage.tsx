@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdDonutLarge } from "react-icons/md";
 import FullLayout from "../components/FullLayout";
+import Preload from "../constants/Preload";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store";
+import FileSlice from "../store/FileSlice";
+import { useHistory } from "react-router-dom";
+import InfoPage from "./Info";
 
 function LoadBookPage() {
+  const { file, data } = useSelector((state: RootState) => state.file);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  useEffect(() => {
+    const data = Preload.Parsing.parsingEpub(file);
+
+    dispatch(FileSlice.actions.setData(data));
+  }, [file]);
+
+  useEffect(() => {
+    if (data) history.replace(InfoPage.path);
+  }, [data, history]);
   return (
     <FullLayout>
       <div

@@ -1,11 +1,14 @@
-import tmp from "tmp";
+import path from "path";
+import fs from "fs";
 import { remote } from "electron";
+import rimraf from "rimraf";
 
-const temp = tmp.dirSync();
-const tempDir = temp.name;
+const tempDir = path.join(remote.app.getPath("temp"), "epub_translator");
 
-remote.app.on("before-quit", () => {
-  temp.removeCallback();
-});
+if (fs.existsSync(tempDir)) {
+  rimraf.sync(tempDir);
+}
+fs.mkdirSync(tempDir);
 
+console.log(tempDir);
 export default tempDir;
