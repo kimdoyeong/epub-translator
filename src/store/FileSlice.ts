@@ -6,7 +6,7 @@ interface FileType {
 const initialState: FileType = {
   file: null,
 };
-const File = createSlice({
+const FileSlice = createSlice({
   name: "file",
   initialState,
   reducers: {
@@ -19,4 +19,4 @@ const File = createSlice({
   },
 });
 
-export default File;
+export default FileSlice;
