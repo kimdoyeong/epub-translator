@@ -1,6 +1,7 @@
 import React from "react";
+import Routes from "pages/Routes";
 
 function App() {
-  return <div>Hello world!</div>;
+  return <Routes />;
 }
 export default App;
