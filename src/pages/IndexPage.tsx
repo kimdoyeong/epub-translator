@@ -4,13 +4,12 @@ import { MdFileUpload } from "react-icons/md";
 import FullLayout from "../components/FullLayout";
 
 function IndexPage() {
+  function selectFile() {}
   return (
     <FullLayout>
-      <DropZone>
+      <DropZone onClick={selectFile}>
         <MdFileUpload style={{ fontSize: 48 }} />
-        <span style={{ marginTop: 16 }}>
-          클릭해서 선택하거나 파일을 드래그 앤 드랍
-        </span>
+        <span style={{ marginTop: 16 }}>클릭해서 선택</span>
       </DropZone>
     </FullLayout>
   );
