@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { MdFileUpload } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import FullLayout from "../components/FullLayout";
 import Preload from "../constants/Preload";
+import FileSlice from "../store/FileSlice";
 
 function IndexPage() {
-  function selectFile() {
-    Preload.Dialog.openEpubDialog().then((v) => {
-      console.log(v);
-    });
+  const dispatch = useDispatch();
+  async function selectFile() {
+    const dialog = await Preload.Dialog.openEpubDialog();
+    if (dialog.canceled || !dialog.filePaths[0]) return;
+
+    dispatch(FileSlice.actions.setFile(dialog.filePaths[0]));
   }
   return (
     <FullLayout>
