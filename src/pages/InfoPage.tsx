@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import SelectTranslateAPI from "../components/SelectTranslateAPI";
 import SelectLanguage from "../components/SelectLanguage";
+import TranslateButton from "../components/TranslateButton";
 
 function InfoPage() {
   const { title, language, cover } = useSelector(
@@ -17,6 +18,7 @@ function InfoPage() {
           <img src={cover} alt={title} className="cover" />
         </div>
         <div className="right">
+          <TranslateButton />
           <h1 className="title">{title}</h1>
           <SelectLanguage target={language} />
           <SelectTranslateAPI />
