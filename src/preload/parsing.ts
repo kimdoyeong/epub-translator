@@ -38,11 +38,19 @@ export function parsingEpub(bookPath: string) {
       coverEntry.getData().toString("base64") +
       ""
     : undefined;
+  const spines = $opf("spine itemref")
+    .map(function () {
+      return manifests[$opf(this).attr("idref")].href;
+    })
+    .get();
 
   return {
     title,
     language,
     cover,
+    opf,
+    manifests,
+    spines,
   };
 }
 
