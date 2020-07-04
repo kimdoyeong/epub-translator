@@ -1,5 +1,6 @@
 import TranslateAPI from "./TranslateAPI";
 import PreferenceManager from "../preload/PreferenceManager";
+import axios from "axios";
 
 class Papago extends TranslateAPI {
   constructor() {
@@ -45,7 +46,18 @@ class Papago extends TranslateAPI {
     const apiKey = PreferenceManager.get("papago_api_key");
     const apiSecret = PreferenceManager.get("papago_api_password");
 
-    return "";
+    const request = await axios.post(
+      "https://naveropenapi.apigw.ntruss.com/nmt/v1/translation",
+      { source: from, target: to, text },
+      {
+        headers: {
+          "X-NCP-APIGW-API-KEY-ID": apiKey,
+          "X-NCP-APIGW-API-KEY": apiSecret,
+        },
+      }
+    );
+
+    return request.data.translatedText;
   }
 }
 
