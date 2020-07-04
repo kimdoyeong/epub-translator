@@ -1,5 +1,6 @@
 import AdmZip from "adm-zip";
 import cheerio from "cheerio";
+import translate from "./translate";
 
 export function parsingEpub(bookPath: string) {
   console.log(bookPath);
@@ -55,7 +56,22 @@ export function parsingEpub(bookPath: string) {
 }
 
 if (process.env.BOOK_PATH) {
-  parsingEpub(process.env.BOOK_PATH);
+  const { spines, language } = parsingEpub(process.env.BOOK_PATH);
+  const jobs = translate.papago.driver.translateBook(
+    language,
+    "ko",
+    process.env.BOOK_PATH,
+    spines
+  );
+
+  (async () => {
+    for (const job of jobs) {
+      console.log(job.name + " 중...");
+      await job.execute();
+    }
+  })().catch((e) => {
+    console.error(e);
+  });
 }
 
 function getCoverId($: CheerioStatic) {

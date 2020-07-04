@@ -8,12 +8,16 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+app.commandLine.appendSwitch("disable-features", "OutOfBlinkCors");
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
     webPreferences: {
+      webSecurity: false,
+      nodeIntegration: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   });

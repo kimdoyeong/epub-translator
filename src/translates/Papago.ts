@@ -43,6 +43,7 @@ class Papago extends TranslateAPI {
   async translate(from: string, to: string, text: string) {
     if (!super.isSupport(from, to))
       throw new Error("지원하지 않는 언어입니다.");
+    if (!text.trim()) return "";
     const apiKey = PreferenceManager.get("papago_api_key");
     const apiSecret = PreferenceManager.get("papago_api_password");
 
@@ -57,7 +58,7 @@ class Papago extends TranslateAPI {
       }
     );
 
-    return request.data.translatedText;
+    return request.data.message.result.translatedText;
   }
 }
 
