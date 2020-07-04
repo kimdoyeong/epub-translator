@@ -6,11 +6,13 @@ interface FileType {
   file: string | null;
   data: FileData | null;
   translate: keyof typeof Preload.translate;
+  to: string | null;
 }
 const initialState: FileType = {
   file: null,
   data: null,
   translate: Object.keys(Preload.translate)[0] as any,
+  to: null,
 };
 const FileSlice = createSlice({
   name: "file",
@@ -29,6 +31,9 @@ const FileSlice = createSlice({
     },
     setTranslate(state, action: PayloadAction<keyof typeof Preload.translate>) {
       state.translate = action.payload;
+    },
+    setToLanguage(state, action: PayloadAction<string>) {
+      state.to = action.payload;
     },
   },
 });
