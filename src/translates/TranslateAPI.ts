@@ -5,10 +5,16 @@ type SupportLanguageType = {
 abstract class TranslateAPI {
   name: string;
   supportLanguages: SupportLanguageType;
+  config: { id: string; name: string }[];
 
-  constructor(name: string, supportLanguages: SupportLanguageType) {
+  constructor(
+    name: string,
+    supportLanguages: SupportLanguageType,
+    config: { id: string; name: string }[]
+  ) {
     this.name = name;
     this.supportLanguages = supportLanguages;
+    this.config = config;
   }
   getLanguages(filter: string) {
     const data: { from: string; to: string }[] = [];
