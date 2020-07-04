@@ -77,7 +77,7 @@ const Wrap = styled.div`
     margin-top: 1em;
     .input {
       display: flex;
-      margin-bottom: 1em;
+      margin-bottom: 0.5em;
       span {
         width: 100px;
       }
