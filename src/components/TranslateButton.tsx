@@ -21,8 +21,9 @@ function TranslateButton({ language }: { language: string }) {
     const driver = Preload.translate[translate].driver;
     const jobs = driver.translateBook(language, to, bookPath, spines);
 
-    for (const job of jobs) {
-      setState(job.name + " 중...");
+    for (const i in jobs) {
+      const job = jobs[i];
+      setState(job.name + " 중... (" + (i + 1) + "/" + jobs.length + ")");
       await job.execute();
     }
 
