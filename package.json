@@ -92,6 +92,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "@types/adm-zip": "^0.4.33",
+    "@types/axios": "^0.14.0",
     "@types/cheerio": "^0.22.18",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
@@ -100,6 +101,7 @@
     "@types/rimraf": "^3.0.0",
     "@types/styled-components": "^5.1.0",
     "adm-zip": "^0.4.16",
+    "axios": "^0.19.2",
     "cheerio": "^1.0.0-rc.3",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.13.1",
