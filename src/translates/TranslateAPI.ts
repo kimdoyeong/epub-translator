@@ -28,6 +28,15 @@ abstract class TranslateAPI {
 
     return data;
   }
+  isSupport(from: string, to: string) {
+    const fromLang = this.supportLanguages[from];
+    if (!fromLang) return false;
+
+    for (const support of fromLang) {
+      if (support === to) return true;
+    }
+    return false;
+  }
   abstract translate(from: string, to: string, text: string): Promise<string>;
 }
 
