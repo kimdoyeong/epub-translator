@@ -52,6 +52,7 @@ export function parsingEpub(bookPath: string) {
     opf,
     manifests,
     spines,
+    bookPath,
   };
 }
 

@@ -18,7 +18,7 @@ function InfoPage() {
           <img src={cover} alt={title} className="cover" />
         </div>
         <div className="right">
-          <TranslateButton />
+          <TranslateButton language={language} />
           <h1 className="title">{title}</h1>
           <SelectLanguage target={language} />
           <SelectTranslateAPI />

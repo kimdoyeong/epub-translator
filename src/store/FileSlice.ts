@@ -7,17 +7,22 @@ interface FileType {
   data: FileData | null;
   translate: keyof typeof Preload.translate;
   to: string | null;
+  progress: boolean;
 }
 const initialState: FileType = {
   file: null,
   data: null,
   translate: Object.keys(Preload.translate)[0] as any,
   to: null,
+  progress: false,
 };
 const FileSlice = createSlice({
   name: "file",
   initialState,
   reducers: {
+    setProgress(state, action: PayloadAction<boolean>) {
+      state.progress = action.payload;
+    },
     setFile(state, action: PayloadAction<string>) {
       state.file = action.payload;
     },

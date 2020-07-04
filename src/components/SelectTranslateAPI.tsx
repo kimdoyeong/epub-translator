@@ -11,7 +11,7 @@ function SelectTranslateAPI() {
     ...value,
     id,
   }));
-  const translate = useSelector((state: RootState) => state.file.translate);
+  const { translate, progress } = useSelector((state: RootState) => state.file);
   const dispatch = useDispatch();
 
   const config = Preload.translate[translate].driver.config;
@@ -45,7 +45,9 @@ function SelectTranslateAPI() {
     <Wrap>
       <select
         value={translate}
+        disabled={progress}
         onChange={(e) =>
+          !progress &&
           dispatch(FileSlice.actions.setTranslate(e.target.value as any))
         }
       >
@@ -66,7 +68,9 @@ function SelectTranslateAPI() {
             />
           </label>
         ))}
-        <button onClick={apply}>적용</button>
+        <button onClick={apply} disabled={progress}>
+          적용
+        </button>
       </div>
     </Wrap>
   );

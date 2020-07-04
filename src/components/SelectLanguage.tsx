@@ -6,14 +6,15 @@ import { languageCode } from "../translates/TranslateAPI";
 import FileSlice from "../store/FileSlice";
 
 function SelectLanguage({ target }: { target: string }) {
-  const { translate, to } = useSelector((state: RootState) => state.file);
+  const { translate, to, progress } = useSelector(
+    (state: RootState) => state.file
+  );
   const dispatch = useDispatch();
 
   const { driver } = Preload.translate[translate];
   const name: string = (languageCode as any)[target];
   const translateLanguages = driver.getLanguages(target);
 
-  console.log(to);
   useEffect(() => {
     if (translateLanguages.length > 0) {
       dispatch(FileSlice.actions.setToLanguage(translateLanguages[0].to));
@@ -26,8 +27,9 @@ function SelectLanguage({ target }: { target: string }) {
       <span>{name} → </span>
       <select
         value={to || translateLanguages[0].to}
+        disabled={progress}
         onChange={(e) =>
-          dispatch(FileSlice.actions.setToLanguage(e.target.value))
+          !progress && dispatch(FileSlice.actions.setToLanguage(e.target.value))
         }
       >
         {translateLanguages.map(({ to }) => (
