@@ -3,6 +3,7 @@ import styled from "styled-components";
 import FullLayout from "../components/FullLayout";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import SelectTranslateAPI from "../components/SelectTranslateAPI";
 
 function InfoPage() {
   const { title, language, cover } = useSelector(
@@ -17,6 +18,7 @@ function InfoPage() {
         <div className="right">
           <h1 className="title">{title}</h1>
           <div className="description">{language}</div>
+          <SelectTranslateAPI />
         </div>
       </Layout>
     </FullLayout>
