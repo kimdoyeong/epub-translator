@@ -16,6 +16,7 @@ function InfoPage() {
         </div>
         <div className="right">
           <h1 className="title">{title}</h1>
+          <div className="description">{language}</div>
         </div>
       </Layout>
     </FullLayout>
