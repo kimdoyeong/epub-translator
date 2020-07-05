@@ -112,7 +112,7 @@ abstract class TranslateAPI {
     const translate = this.translate.bind(this);
 
     const elements = $("body p, body a")
-      .map(async function (index, el) {
+      .map(async function () {
         if (!$(this).text().trim()) return;
 
         $("ruby rt", this).remove();
