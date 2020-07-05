@@ -4,7 +4,6 @@ import util from "util";
 import cheerio from "cheerio";
 import AdmZip from "adm-zip";
 import tempDir from "../preload/tempDir";
-import archiver from "archiver";
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
