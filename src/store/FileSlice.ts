@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Preload from "../constants/Preload";
+import { TranslateManagerOptions } from "../preload/TranslateManager";
 type FileData = ReturnType<typeof Preload.Parsing.parsingEpub>;
 
 interface FileType {
@@ -10,6 +11,7 @@ interface FileType {
   progress: boolean;
   progressState: string;
   done: boolean;
+  options: Partial<TranslateManagerOptions>;
 }
 const initialState: FileType = {
   file: null,
@@ -19,6 +21,7 @@ const initialState: FileType = {
   progress: false,
   progressState: "",
   done: false,
+  options: {},
 };
 const FileSlice = createSlice({
   name: "file",
