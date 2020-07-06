@@ -5,10 +5,14 @@ import Preload from "../constants/Preload";
 import { languageCode } from "../translates/TranslateAPI";
 import FileSlice from "../store/FileSlice";
 
-function SelectLanguage({ target }: { target: string }) {
-  const { translate, to, progress } = useSelector(
-    (state: RootState) => state.file
-  );
+function SelectLanguage() {
+  const {
+    translate,
+    to,
+    progress,
+    data: { language },
+  } = useSelector((state: RootState) => state.file);
+  const target = language;
   const dispatch = useDispatch();
 
   const { driver } = Preload.translate[translate];

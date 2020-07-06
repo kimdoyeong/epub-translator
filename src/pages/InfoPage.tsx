@@ -14,14 +14,14 @@ function InfoPage() {
   return (
     <FullLayout>
       <div style={{ padding: "1em" }}>
-        <TranslateButton language={language} />
+        <TranslateButton />
         <Layout>
           <div className="left">
             <img src={cover} alt={title} className="cover" />
           </div>
           <div className="right">
             <h1 className="title">{title}</h1>
-            <SelectLanguage target={language} />
+            <SelectLanguage />
             <SelectTranslateAPI />
           </div>
         </Layout>

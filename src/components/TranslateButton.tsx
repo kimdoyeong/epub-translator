@@ -4,35 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import FileSlice from "../store/FileSlice";
 import Preload from "../constants/Preload";
+import useTranslate from "../hooks/useTranslate";
 
-function TranslateButton({ language }: { language: string }) {
-  const {
-    progress,
-    to,
-    translate,
-    data: { bookPath, spines },
-  } = useSelector((state: RootState) => state.file);
-  const dispatch = useDispatch();
-  const [state, setState] = useState("");
+function TranslateButton() {
+  const { progress, progressState } = useSelector(
+    (state: RootState) => state.file
+  );
+  const onTranslate = useTranslate();
 
-  const onTranslate = useCallback(async () => {
-    dispatch(FileSlice.actions.setProgress(true));
-
-    const driver = Preload.translate[translate].driver;
-    const jobs = driver.translateBook(language, to, bookPath, spines);
-
-    for (const i in jobs) {
-      const job = jobs[i];
-      setState(job.name + " 중... (" + (i + 1) + "/" + jobs.length + ")");
-      await job.execute();
-    }
-
-    dispatch(FileSlice.actions.setProgress(false));
-    setState("");
-  }, [dispatch, language, to, translate, bookPath, spines]);
   return (
     <>
-      {progress && <State>{state}</State>}
+      {progress && <State>{progressState}</State>}
       <Button disabled={progress} onClick={onTranslate}>
         {!progress ? "번역하기" : "번역 중..."}
       </Button>

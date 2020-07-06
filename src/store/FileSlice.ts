@@ -8,6 +8,8 @@ interface FileType {
   translate: keyof typeof Preload.translate;
   to: string | null;
   progress: boolean;
+  progressState: string;
+  done: boolean;
 }
 const initialState: FileType = {
   file: null,
@@ -15,6 +17,8 @@ const initialState: FileType = {
   translate: Object.keys(Preload.translate)[0] as any,
   to: null,
   progress: false,
+  progressState: "",
+  done: false,
 };
 const FileSlice = createSlice({
   name: "file",
@@ -30,6 +34,7 @@ const FileSlice = createSlice({
       state.file = null;
       state.data = null;
       state.translate = null;
+      state.done = false;
     },
     setData(state, action: PayloadAction<FileData>) {
       state.data = action.payload;
@@ -39,6 +44,15 @@ const FileSlice = createSlice({
     },
     setToLanguage(state, action: PayloadAction<string>) {
       state.to = action.payload;
+    },
+    setProgressState(state, action: PayloadAction<string>) {
+      state.progressState = action.payload;
+      state.done = false;
+    },
+    done(state) {
+      state.progressState = "";
+      state.done = true;
+      state.progress = false;
     },
   },
 });
