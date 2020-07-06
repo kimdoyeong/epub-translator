@@ -1,6 +1,7 @@
 import AdmZip from "adm-zip";
 import cheerio from "cheerio";
 import translate from "./translate";
+import TranslateManager from "./TranslateManager";
 
 export function parsingEpub(bookPath: string) {
   console.log(bookPath);
@@ -57,13 +58,8 @@ export function parsingEpub(bookPath: string) {
 }
 
 if (process.env.BOOK_PATH) {
-  const { spines, language } = parsingEpub(process.env.BOOK_PATH);
-  const jobs = translate.papago.driver.translateBook(
-    language,
-    "ko",
-    process.env.BOOK_PATH,
-    spines
-  );
+  const manager = new TranslateManager("ko", process.env.BOOK_PATH, "papago");
+  const jobs = manager.getJobs();
 
   (async () => {
     for (const job of jobs) {

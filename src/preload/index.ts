@@ -3,6 +3,7 @@ import * as Parsing from "./parsing";
 import PreferenceManager from "./PreferenceManager";
 import translate from "./translate";
 import Store from "./Store";
+import TranslateManager from "./TranslateManager";
 
 const preloads = {
   Dialog,
@@ -10,6 +11,7 @@ const preloads = {
   PreferenceManager,
   translate,
   Store,
+  TranslateManager,
 };
 
 export type PreloadType = typeof preloads;

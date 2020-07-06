@@ -15,8 +15,9 @@ function useTranslate() {
   const onTranslate = useCallback(async () => {
     dispatch(FileSlice.actions.setProgress(true));
 
-    const driver = Preload.translate[translate].driver;
-    const jobs = driver.translateBook(language, to, bookPath, spines);
+    const { TranslateManager } = Preload;
+    const manager = new TranslateManager(language, bookPath, translate);
+    const jobs = manager.getJobs();
 
     for (const i in jobs) {
       const job = jobs[i];
