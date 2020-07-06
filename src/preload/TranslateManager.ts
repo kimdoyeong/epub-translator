@@ -72,6 +72,16 @@ class TranslateManager {
     $("dc\\:title").text(await this.translate(title));
     $("dc\\:language").text(this.targetLanguage);
 
+    for (const i of Object.values(this.bookData.manifests)) {
+      const item: any = i;
+      if (item["media-type"] === "text/css") {
+        await this.handleCss(item.href);
+      }
+    }
+    const { forceHorizontalWriting } = this.options;
+    if (forceHorizontalWriting) {
+      $("spine").removeAttr("page-progression-direction");
+    }
     await fsPromise.writeFile(opfPath, $.xml().toString());
   }
   private async translate(text: string) {
@@ -118,6 +128,23 @@ class TranslateManager {
 
     zip.addLocalFolder(tempPath.folder);
     zip.writeZip(translatedEpubPath);
+  }
+  private async handleCss(slug: string) {
+    const { forceHorizontalWriting } = this.options;
+    if (!forceHorizontalWriting) return;
+
+    const filePath = path.join(this.getTempPath().folder, slug);
+    const data = await (await fsPromise.readFile(filePath))
+      .toString()
+      .split("\n");
+    const newCss = data
+      .filter((line) => {
+        if (forceHorizontalWriting && line.match(/writing\-mode/)) return false;
+        return true;
+      })
+      .join("\n");
+
+    await fsPromise.writeFile(filePath, newCss);
   }
   private getTempPath() {
     const basename = path.basename(this.filePath);
