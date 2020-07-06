@@ -9,14 +9,14 @@ function useTranslate() {
   const {
     to,
     translate,
-    data: { bookPath, spines, language },
+    data: { bookPath },
   } = useSelector((state: RootState) => state.file);
 
   const onTranslate = useCallback(async () => {
     dispatch(FileSlice.actions.setProgress(true));
 
     const { TranslateManager } = Preload;
-    const manager = new TranslateManager(language, bookPath, translate);
+    const manager = new TranslateManager(to, bookPath, translate);
     const jobs = manager.getJobs();
 
     for (const i in jobs) {
@@ -30,7 +30,7 @@ function useTranslate() {
     }
 
     dispatch(FileSlice.actions.done());
-  }, [dispatch, language, to, translate, bookPath, spines]);
+  }, [dispatch, to, translate, bookPath]);
 
   return onTranslate;
 }
