@@ -156,7 +156,7 @@ class TranslateManager {
   }
 }
 
-interface TranslateManagerOptions {
+export interface TranslateManagerOptions {
   forceHorizontalWriting: boolean;
 }
 
