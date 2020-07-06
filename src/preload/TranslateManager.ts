@@ -62,7 +62,7 @@ class TranslateManager {
       throw new Error(".opf 파일을 찾을 수 없습니다.");
     const $ = cheerio.load(await fsPromise.readFile(opfPath), {
       decodeEntities: false,
-      xmlMode: false,
+      xmlMode: true,
     });
 
     // get strings
@@ -115,7 +115,7 @@ class TranslateManager {
       .filter(Boolean);
 
     await Promise.all(elements);
-    await fsPromise.writeFile(filePath, $.xml());
+    await fsPromise.writeFile(filePath, $.xml().toString());
   }
   private async packing() {
     const tempPath = this.getTempPath();
