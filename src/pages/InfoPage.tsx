@@ -6,14 +6,15 @@ import { RootState } from "../store";
 import SelectTranslateAPI from "../components/SelectTranslateAPI";
 import SelectLanguage from "../components/SelectLanguage";
 import TranslateButton from "../components/TranslateButton";
+import TranslateState from "../components/TranslateState";
 
 function InfoPage() {
-  const { title, language, cover } = useSelector(
-    (state: RootState) => state.file.data
-  );
+  const { title, cover } = useSelector((state: RootState) => state.file.data);
+
   return (
     <FullLayout>
       <div style={{ padding: "1em" }}>
+        <TranslateState />
         <TranslateButton />
         <Layout>
           <div className="left">

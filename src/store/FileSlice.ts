@@ -31,10 +31,10 @@ const FileSlice = createSlice({
       state.file = action.payload;
     },
     clearFile(state) {
-      state.file = null;
-      state.data = null;
-      state.translate = null;
-      state.done = false;
+      for (const key of Object.keys(initialState)) {
+        const k: keyof FileType = key as any;
+        (state as any)[k] = initialState[k];
+      }
     },
     setData(state, action: PayloadAction<FileData>) {
       state.data = action.payload;
@@ -53,6 +53,9 @@ const FileSlice = createSlice({
       state.progressState = "";
       state.done = true;
       state.progress = false;
+    },
+    setDone(state, action: PayloadAction<boolean>) {
+      state.done = action.payload;
     },
   },
 });
