@@ -11,7 +11,7 @@ interface OptionCheckBoxProps {
 }
 function OptionCheckBox({ label, target }: OptionCheckBoxProps) {
   const dispatch = useDispatch();
-  const options = useSelector((state: RootState) => state.file.options);
+  const { options, progress } = useSelector((state: RootState) => state.file);
 
   const change = useCallback(
     (v: boolean) => {
@@ -25,7 +25,12 @@ function OptionCheckBox({ label, target }: OptionCheckBoxProps) {
   );
   return (
     <div>
-      <CheckBox label={label} value={options[target]} onChange={change} />
+      <CheckBox
+        label={label}
+        value={options[target]}
+        onChange={change}
+        disabled={progress}
+      />
     </div>
   );
 }
