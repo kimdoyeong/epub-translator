@@ -22,9 +22,10 @@ function useTranslate() {
 
     for (const i in jobs) {
       const job = jobs[i];
+      const progress = parseInt(i, 10) + 1;
       dispatch(
         FileSlice.actions.setProgressState(
-          job.name + " 중... (" + (i + 1) + "/" + jobs.length + ")"
+          job.name + " 중... (" + progress + "/" + jobs.length + ")"
         )
       );
       await job.execute();
