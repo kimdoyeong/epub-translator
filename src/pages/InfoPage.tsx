@@ -13,17 +13,19 @@ function InfoPage() {
   );
   return (
     <FullLayout>
-      <Layout>
-        <div className="left">
-          <img src={cover} alt={title} className="cover" />
-        </div>
-        <div className="right">
-          <TranslateButton language={language} />
-          <h1 className="title">{title}</h1>
-          <SelectLanguage target={language} />
-          <SelectTranslateAPI />
-        </div>
-      </Layout>
+      <div style={{ padding: "1em" }}>
+        <TranslateButton language={language} />
+        <Layout>
+          <div className="left">
+            <img src={cover} alt={title} className="cover" />
+          </div>
+          <div className="right">
+            <h1 className="title">{title}</h1>
+            <SelectLanguage target={language} />
+            <SelectTranslateAPI />
+          </div>
+        </Layout>
+      </div>
     </FullLayout>
   );
 }
