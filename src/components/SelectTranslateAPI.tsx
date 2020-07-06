@@ -43,6 +43,7 @@ function SelectTranslateAPI() {
 
   return (
     <Wrap>
+      <legend>번역 API</legend>
       <select
         value={translate}
         disabled={progress}
@@ -76,7 +77,7 @@ function SelectTranslateAPI() {
   );
 }
 
-const Wrap = styled.div`
+const Wrap = styled.fieldset`
   .configs {
     margin-top: 1em;
     .input {
