@@ -16,10 +16,10 @@ function SelectLanguage({ target }: { target: string }) {
   const translateLanguages = driver.getLanguages(target);
 
   useEffect(() => {
-    if (translateLanguages.length > 0) {
+    if (translateLanguages.length > 0 && !to) {
       dispatch(FileSlice.actions.setToLanguage(translateLanguages[0].to));
     }
-  }, [translateLanguages, dispatch]);
+  }, [translateLanguages, to, dispatch]);
   if (!name) return <div>지원하지 않는 언어입니다.</div>;
 
   return (
