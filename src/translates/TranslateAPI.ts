@@ -117,8 +117,10 @@ abstract class TranslateAPI {
         $("ruby rt", this).remove();
         const text = $(this).text();
         words += text.length;
-        const node = await translate(from, to, text);
-        $(this).text(node);
+        if (!process.env.NO_TRANSLATION) {
+          const node = await translate(from, to, text);
+          $(this).text(node);
+        }
       })
       .toArray()
       .filter(Boolean);
