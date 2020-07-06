@@ -10,6 +10,7 @@ function useTranslate() {
     to,
     translate,
     data: { bookPath },
+    options,
   } = useSelector((state: RootState) => state.file);
 
   const onTranslate = useCallback(async () => {
@@ -17,7 +18,7 @@ function useTranslate() {
 
     const { TranslateManager } = Preload;
     const manager = new TranslateManager(to, bookPath, translate);
-    const jobs = manager.getJobs();
+    const jobs = manager.setOptions(options).getJobs();
 
     for (const i in jobs) {
       const job = jobs[i];
@@ -30,7 +31,7 @@ function useTranslate() {
     }
 
     dispatch(FileSlice.actions.done());
-  }, [dispatch, to, translate, bookPath]);
+  }, [dispatch, to, translate, bookPath, options]);
 
   return onTranslate;
 }

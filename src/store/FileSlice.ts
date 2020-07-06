@@ -60,6 +60,9 @@ const FileSlice = createSlice({
     setDone(state, action: PayloadAction<boolean>) {
       state.done = action.payload;
     },
+    setOption(state, action: PayloadAction<Partial<TranslateManagerOptions>>) {
+      state.options = { ...state.options, ...action.payload };
+    },
   },
 });
 

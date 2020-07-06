@@ -7,6 +7,7 @@ import SelectTranslateAPI from "../components/SelectTranslateAPI";
 import SelectLanguage from "../components/SelectLanguage";
 import TranslateButton from "../components/TranslateButton";
 import TranslateState from "../components/TranslateState";
+import Options from "../components/Options";
 
 function InfoPage() {
   const { title, cover } = useSelector((state: RootState) => state.file.data);
@@ -24,6 +25,7 @@ function InfoPage() {
             <h1 className="title">{title}</h1>
             <SelectLanguage />
             <SelectTranslateAPI />
+            <Options />
           </div>
         </Layout>
       </div>
