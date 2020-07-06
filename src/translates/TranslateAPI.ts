@@ -175,4 +175,6 @@ export const languageCode = {
   fr: "프랑스어",
 };
 
+if (process.env.NO_TRANSLATION)
+  console.log("⚠️ NO_TRANSLATION 옵션이 켜져 있습니다.");
 export default TranslateAPI;
