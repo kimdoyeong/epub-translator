@@ -19,7 +19,7 @@ function InfoPage() {
         <TranslateButton />
         <Layout>
           <div className="left">
-            <img src={cover} alt={title} className="cover" />
+            {cover && <img src={cover} alt={title} className="cover" />}
           </div>
           <div className="right">
             <h1 className="title">{title}</h1>
