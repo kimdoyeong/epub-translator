@@ -22,7 +22,10 @@ export function parsingEpub(bookPath: string) {
   const $opf = cheerio.load(opfData, { xmlMode: true });
 
   const title = $opf("dc\\:title").text();
-  const language = $opf("dc\\:language").text();
+  const language = $opf("dc\\:language")
+    .text()
+    .replace(/\-(.+)$/, "");
+  console.log(language);
   const manifests: any = {};
 
   $opf("manifest > item").each(function (index, node) {
